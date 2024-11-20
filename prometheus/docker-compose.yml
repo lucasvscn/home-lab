@@ -27,7 +27,7 @@ services:
     ports:
       - ${PROMETHEUS_PORT:-9090}:9090
     volumes:
-      - ${PROMETHEUS_PATH}/etc:/etc/prometheus
+      - ${PROMETHEUS_CONFIG_FILE}:/etc/prometheus/prometheus.yml
       - ${PROMETHEUS_PATH}/data:/prometheus
     restart: unless-stopped
     networks:
