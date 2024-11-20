@@ -1,0 +1,16 @@
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    network_mode: host
+    environment:
+      TZ: ${SERVER_TIMEZONE:-'America/Sao_Paulo'}
+      WEBPASSWORD: 'secret'
+      PIHOLE_UID: '1000'
+      PIHOLE_GID: '1000'
+      WEB_PORT: ${PIHOLE_WEB_PORT:-8080}
+    volumes:
+      - ${PIHOLE_ETC_PATH}:/etc/pihole
+      - ${PIHOLE_DNSMASQ_PATH}:/etc/dnsmasq.d
+    restart: unless-stopped
